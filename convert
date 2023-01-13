@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+
+import detector as d
+import sys
+
+arguments = sys.argv
+del arguments[0]
+
+if len(arguments) > 0:    
+    if arguments[0] == '-f':
+        music_file = arguments[1]
+        print(d.do_convert(music_file))
