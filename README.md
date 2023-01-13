@@ -1,2 +1,5 @@
 # simp-note-detector
-Detect the notes in the midi file.
+
+## Utilisation
+
+`./detector -f fichier.mid`
