@@ -1,5 +1,8 @@
 # simp-note-detector
 
+## Paquets necessaires
+- mido (`pip3 install mido`)
+
 ## Utilisation
 
-`./detector -f fichier.mid`
+`./convert -f fichier.mid`
