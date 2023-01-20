@@ -51,7 +51,7 @@ def convert_and_save(file_to_convert: str):
     return json.dumps(retrun_list)
 
 
-def do_convert(file_to_convert: str, with_note: True):
+def do_convert(file_to_convert: str, with_note = True):
     mid = MidiFile(file_to_convert)
     return_dic = {"bpm": 120, "data": []}
     tmp = mid.tracks[0][0].tempo
@@ -90,7 +90,7 @@ def do_convert(file_to_convert: str, with_note: True):
 
 
 def midi_to_rtttl(midi_file: str):
-    notes_json = json.loads(do_convert(midi_tab, False))
+    notes_json = json.loads(do_convert(midi_file, False))
     # d= durée d'une note par defaut
     # o= numéro d'octave par defaut
     # b= tempo (batement/minute bpm)
@@ -106,4 +106,4 @@ def midi_to_rtttl(midi_file: str):
         format_note = "{0}{1}".format(time, note.lower())
         song_str += ' {},'.format(format_note)
     song_str += ' 1p'
-    print(song_str)
+    return song_str

@@ -6,7 +6,35 @@ import sys
 arguments = sys.argv
 del arguments[0]
 
-if len(arguments) > 0:    
-    if arguments[0] == '-f':
-        music_file = arguments[1]
-        print(d.do_convert(music_file))
+if len(arguments) > 0:
+    command = "arduino"
+    for arg in arguments:
+        if arg == '-h':
+            print("""########## Convertisseur de fichier MIDI ##########
+# Commandes:                                      #
+#     -h, --help: Affiche ce message              #
+#     -f, --file [chemin du fichier]: Indique le  #
+# fichier à convertir                             #
+#     -t, --type [arduino|rtttl]: Type de         #
+# conversion pour le fichier midi(defaut arduino) #
+###################################################""")
+
+        if arg == '-t' or arg == '--type':
+            type_conv = arguments[arguments.index(arg)+1]
+            if type_conv == 'rtttl':
+                command = type_conv
+            elif type_conv == 'arduino':
+                command = type_conv
+            else:
+                print("[-t]: Argument invalide !")
+                break
+
+        if arg == '-f':
+            music_file = arguments[arguments.index(arg)+1]
+            if music_file.endswith('.midi') or music_file.endswith('.mid'):
+                if command == 'arduino':
+                    print(d.do_convert(music_file))
+                elif command == 'rtttl':
+                    print(d.midi_to_rtttl(music_file))
+            else:
+                print("Format du fichier invalide")
